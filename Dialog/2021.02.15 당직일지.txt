@@ -11,6 +11,7 @@
 
 
 오늘은 일했나: 오늘은 일리 드림큐드 프로젝트의 디자인 마감작업과 기본적인 AR프로젝트 셋팅을 하고 로비를 제작했다. 블랜더로 디자인한것과 AR Target을 제작한 것을 상부에 보고했다.
+제작한것은 회사 github Repository에 업로드했는데 private repository라서 업로드 할수가 없다.
 배운거: 블랜더 모델링을 유니티로 옭기는 방법 : https://sidonam.tistory.com/49?category=696993
 Raycast 사용법과 UX조정
 
