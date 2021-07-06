@@ -1,29 +1,26 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-typedef struct listNode {
-    string Name;
-    bool Done;
-} node;
-
-vector<node> nodeList;
-
-
-string solution(vector<string> participant, vector<string> completion) {
-    for (int i=0; i < participant.size(); i++ ){
-        node tmpNode;
-        tmpNode.Name = participant[i];
-        tmpNode.Done = false;
-        nodeList.push_back(tmpNode);
+string solution(vector<string> participant, vector<string> completion)
+{
+    int i;
+    sort(participant.begin(), participant.end());
+    sort(completion.begin(), completion.end());
+    for (i = 0; participant[i] == completion[i]; i++)
+    {
+        ;
     }
-    
-    for (int i=0; i < completion.size(); i++ ){
-        if(std::find(nodeList.begin(), nodeList.end(), completion[i]) == nodeList.end()){
-        string answer = completion[i];
-        return answer;   
-        }
-    }
+    return participant[i];
+}
+
+int main()
+{
+    vector<string> participant = {"marina", "josipa", "nikola", "vinko", "filipa"};
+    vector<string> completion = {"josipa", "filipa", "marina", "nikola"};
+    solution(participant, completion);
+    return 0;
 }

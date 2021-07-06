@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "xhash": "cpp",
+        "hash_map": "cpp",
+        "ostream": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "algorithm": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "iostream": "cpp",
+        "utility": "cpp"
+    }
+}
