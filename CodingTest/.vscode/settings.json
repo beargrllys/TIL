@@ -9,6 +9,13 @@
         "vector": "cpp",
         "xstring": "cpp",
         "iostream": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "queue": "cpp",
+        "xutility": "cpp",
+        "string": "cpp",
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "list": "cpp",
+        "xtree": "cpp"
     }
 }
