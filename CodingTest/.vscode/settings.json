@@ -16,6 +16,12 @@
         "deque": "cpp",
         "initializer_list": "cpp",
         "list": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "tuple": "cpp",
+        "ios": "cpp",
+        "random": "cpp",
+        "iosfwd": "cpp",
+        "cstring": "cpp",
+        "fstream": "cpp"
     }
 }
