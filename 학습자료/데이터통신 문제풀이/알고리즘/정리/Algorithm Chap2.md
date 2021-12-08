@@ -185,3 +185,38 @@ void subest(const keytype S[], int n){
 }
 ```
 
+---
+
+#### 8) Under what circumstances, when a searching operation is needed, would
+Sequential Search (Algorithm 1.1) not be appropriate?
+탐색과정을 거쳐야 하는 배열이 이미 크기 순서로 정렬되어있을때 Sequential Search를 수행하기에 비효율적이다.
+
+<span style="color:red"> => 배열의 원소가 과하게 많을때 사용하기 부적절하다. </span>
+
+---
+
+#### 9) Give a practical example in which you would not use Exchange Sort (Algorithm 1.3) to do a sorting task.
+삽입 정렬은 배열내 자리교환이 일어나지 않는다.
+
+---
+
+#### 10) Define basic operations for your algorithms in Exercises 1–7, and study the
+performance of these algorithms. If a given algorithm has an every-case time
+complexity, determine it. Otherwise, determine the worst-case time
+complexity.
+
+![image-20211208002432459](C:\Users\js774\AppData\Roaming\Typora\typora-user-images\image-20211208002432459.png)
+
+Ex1 : every-case : T(n) = 1.5n + n = 2.5n
+
+![image-20211208003148170](C:\Users\js774\AppData\Roaming\Typora\typora-user-images\image-20211208003148170.png)
+
+Ex2 : every-case : T(n) =(n^2+2n)/8
+
+![image-20211208004130097](C:\Users\js774\AppData\Roaming\Typora\typora-user-images\image-20211208004130097.png)
+
+Ex3 : worst-case : W(n) = 4n-4
+
+![image-20211208012144384](C:\Users\js774\AppData\Roaming\Typora\typora-user-images\image-20211208012144384.png)
+
+Ex3 : worst-case : W(n) = 4n-4

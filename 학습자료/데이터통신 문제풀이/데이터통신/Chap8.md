@@ -86,6 +86,70 @@
 
 #### P8-2. Five equal-size datagrams belonging to the same message leave for the destination one after another. However, they travel through different paths as shown in Table 8.1.
 
-![image-20211205011341805](C:\Users\js774\AppData\Roaming\Typora\typora-user-images\image-20211205011341805.png)
+![image-20211205011341805](C:\Users\js774\Desktop\TIL\학습자료\데이터통신 문제풀이\데이터통신\image\image-20211205011341805.png)
 
 ##### We assume that the delay for each switch (including waiting and processing) is 3, 10, 20, 7, and 20 ms respectively. Assuming that the propagation speed is 2 × 108 m, find the order the datagrams arrive at the destination and the delay for each. Ignore any other delays in transmission.
+
+#### P8-3. Transmission of information in any network involves end-to-end addressing and sometimes local addressing (such as VCI). Table 8.2 shows the types of networks and the addressing mechanism used in each of them.
+
+![image-20211208122210410](C:\Users\js774\Desktop\TIL\학습자료\데이터통신 문제풀이\데이터통신\image\image-20211208122210410.png)
+
+##### a. Why does a circuit-switched network need end-to-end addressing during the setup and teardown phases? Why are no addresses needed during the data transfer phase for this type of network?
+
+Circuit Switch Network의 경우 dedicated 통신을 하기때문에 Setup phase와 Teardown phase에만 address 를 명시해주면 data tranfer phase에는 해당화선을 사용하는것이 setup되어진 통신 밖에 업기때문에 end to end address를 명시해줄필요가 없다. 
+
+##### b. Why does a datagram network need only end-to-end addressing during the data transfer phase, but no addressing during the setup and teardown phases?
+
+Datagram Network에서는 데이터를 전송하기만하고 Packet이 독립적으로 움직인다. Packet loss나 packet check를 하지않기 때문에 별도의 setup, teardown 과정없이 Data transfer과정에서만 end to end address를 명시하고 전송한다. 
+
+##### c. Why does a virtual-circuit network need addresses during all three phases?
+
+virtual-circuit network는 setup과 Teardown 과정에서 destination과 해당 통신을 위한 Routing table를 만들기 위해 end to end address를 명시하고 Datatranfer과정에서 순서대로 destination에 도착해야하기때문에  VCI를 통해 같은 hop으로 보내지기 위해 Local address를 표기한다.   
+
+#### P8-4. We mentioned that two types of networks, datagram and virtual-circuit, need a routing or switching table to find the output port from which the information belonging to a destination should be sent out, but a circuit-switched network has no need for such a table. Give the reason for this difference.
+Circuit switch는 source과 destination이 Packetized되지 않고 직접적으로 연결되어 있어서 datagram이나 virtual circuitswitch와는 달리 별도의 switch table를 만들지 않아도 된다.
+
+#### P8-5. An entry in the switching table of a virtual-circuit network is normally created during the setup phase and deleted during the teardown phase. In other words, the entries in this type of network reflect the current connections, the activity in the network. In contrast, the entries in a routing table of a datagram network do not depend on the current connections; they show the configuration of the network and how any packet should be routed to a final destination. The entries may remain the same even if there is no activity in the network. The routing tables, however, are updated if there are changes in the network. Can you explain the reason for these two different characteristics? Can we say that a virtual-circuit is a connection-oriented network and a datagram network is a connectionless network because of the above characteristics?
+virtual-circuit network는 setup phase와 Teardown phase에서 통신 연결을 수립하기 때문에 Connectio-Oriented라고 부르고 datagram network은 통신의 연결여부와 상관없이 End to End address를 보고 switch되어기지 때문에 Connectionless 특성을 가지고 있다고 할수 있다.
+
+#### P8-6. The minimum number of columns in a datagram network is two; the minimum number of columns in a virtual-circuit network is four. Can you explain the reason? Is the difference related to the type of addresses carried in the packets of each network? 
+Datagram Network에서는 Destination port와 Output Port가 있고 virtual-circuit network is four에서는 Incoming Port와 VCI / Outgoing Port와 VCI로 Column이 이루어져있다.  패킷이 다음으로 어디에 switch될지를 보여주는것이다.
+
+####  P8-7. Figure 8.27 shows a switch (router) in a datagram network.
+
+![image-20211208132414226](C:\Users\js774\Desktop\TIL\학습자료\데이터통신 문제풀이\데이터통신\image\image-20211208132414226.png)
+
+#### Find the output port for packets with the following destination addresses:
+
+##### a. Packet 1: 7176 => Port2
+
+##### b. Packet 2: 1233 => Port3
+##### c. Packet 3: 8766  => Port3
+
+##### d. Packet 4: 9144 => Port2
+
+#### P8-8. Figure 8.28 shows a switch in a virtual-circuit network.
+
+![image-20211208132748784](C:\Users\js774\Desktop\TIL\학습자료\데이터통신 문제풀이\데이터통신\image\image-20211208132748784.png)
+
+##### Find the output port and the output VCI for packets with the following input port and input VCI addresses:
+##### a. Packet 1: 3, 78 => 2,70
+
+##### b. Packet 2: 2, 92 => 1,45
+##### c. Packet 3: 4, 56  => 3,11
+
+##### d. Packet 4: 2, 71 => 4,41
+
+#### P8-9. Answer the following questions:
+##### a. Can a routing table in a datagram network have two entries with the same destination address? Explain.
+
+##### Destination address은 Datagram network에서는 유일하기 때문에 Rounting table에서 중복될수 없다.
+
+##### b. Can a switching table in a virtual-circuit network have two entries with the same input port number? With the same output port number? With the same incoming VCIs? With the same outgoing VCIs? With the same incoming values (port, VCI)? With the same outgoing values (port, VCI)?
+
+VCI는 switch간에 관계를 유일하게 표현한것이기 때문에  특정포트과 VCI의 조합은 유일하다. 
+
+#### P8-10. It is obvious that a router or a switch needs to search to find information in the corresponding table. The searching in a routing table for a datagram network is based on the destination address; the searching in a switching table in a virtual-circuit network is based on the combination of incoming port and
+incoming VCI. Explain the reason and define how these tables must be ordered (sorted) based on these values.
+
+Datagram netowrk는 destination address 기반으로 정렬되어있고 Virtual cirsut switch에서는 Incoming port와 incoming VCI를 기반으로 정렬되어있다. 이렇게 정렬이 되어있어야 input 에 대한 outgoing을 찾기 편하기때문에 이렇게 정려되어있는것이다.
