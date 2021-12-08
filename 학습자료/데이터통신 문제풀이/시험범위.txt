@@ -1,0 +1,20 @@
+알고리즘 : 강의를 듣자..
+Chap1 28 26 15  - Done!
+Chap2 8 37 6
+Chap3 14 33 5
+Chap4 9 43 6
+Chap5 6 37 6
+Chap6 4 12 18
+Chap7 0 42 7
+
+데통
+Chap5 6 10 12  - Done!
+Chap6 11 12 18  - Done!
+Chap8 0 10 16  - Done!
+Chap9 0 14 15
+Chap11 7 24 18
+Chap12 7 24 25 => 강의노트위주로
+Chap13 0 10 11 => 강의노트위주로
+
+또보도로 꼭 하기
+내일은 데통 Chap 8,9 / 알고리즘 chap2
