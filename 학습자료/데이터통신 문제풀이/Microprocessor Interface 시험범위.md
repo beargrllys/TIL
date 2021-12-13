@@ -4,7 +4,7 @@
 
 - ##### state diagram 그리기 
 
- ![image-20211211170606225](C:\Users\js774\AppData\Roaming\Typora\typora-user-images\image-20211211170606225.png)
+ ![image-20211211170606225](.\데이터통신\image\image-20211211170606225.png)
 
 ####  2. 강의 6 Mealy FSM(Finity State Machine) [p16~17]
 
@@ -201,55 +201,191 @@ endmodule
 
 #### 4. 강의 7 Delay-based timing [과제]
 
+- Regular Delay Control
+
+``` verilog
+//Delay 실행 -> 우측 계산후 좌변에 할당
+parameter latency = 20; 
+parameter delta = 2;   
+reg x, y, z, p, q;
+
+initial
+    begin 	  
+        x = 0;                 
+        #10 y = 1;
+        #latency z = 0;
+        #(latency + delta) p = 1;
+        #y x = x + 1;
+        #(4:5:6) q = 0;
+
+```
+
+
+
+- Intra assignment Delay
+
+``` verilog
+//우측 계산후 -> Delay -> 좌측에 할당
+reg x, y, z; 
+initial
+    begin
+        x = 0;   z = 0;
+        y = #5  x + z;
+    end    
+initial
+    begin
+        x = 0; z = 0;
+        temp_xz = x + z;
+        #5    y = temp_xz;
+    end 
+```
+
 
 
 #### 5. 강의 7 Generate Blocks, Parallel block[과제]
 
-- ##### Parallel block / fork , join
+``` verilog
+module BeginEnd(clk,y_out,Z_out,W_out);
+  input clk;
+  output y_out,Z_out,W_out;
+  reg y_val,Z_val,W_val;
+  always @(posedge clk)
+    begin
+      #10 y_val = 1'b1;
+      #20 Z_val = 1'b1;
+      #40 W_val = 1'b1;
+    end
+  assign y_out = y_val;
+  assign Z_out = Z_val;
+  assign W_out = W_val;
+endmodule;
+# Sequential Delay이므로 10 -> 30(+20) -> 70(+40) 시점에서 1로 증가한다.
+```
+
+``` verilog
+module forkJoin(clk,y_out,Z_out,W_out);
+  input clk;
+  output y_out,Z_out,W_out;
+  reg y_val,Z_val,W_val;
+  always @(posedge clk)
+  fork
+    #10 y_val = 1'b1;
+    #20 Z_val = 1'b1;
+    #40 W_val = 1'b1;
+  join
+  assign y_out = y_val;
+  assign Z_out = Z_val;
+  assign W_out = W_val;
+endmodule;
+# Parellar Delay이므로 10 -> 20 -> 40 시점에서 1로 증가한다.
+```
+
+``` verilog
+module forkJoin_tb;
+  reg a,b,clk;
+  wire y_out,Z_out,W_out;
+  always #1 clk = !clk;
+  initial begin
+    a=0;b=0;clk=0;
+  end
+  forkJoin _forkJoin(clk,y_out,Z_out,W_out);
+endmodule
+```
 
 
 
-- ##### Sequential Block / begin, end
-
-
-
-#### 6. 강의 8-9 Function Task [p10]
+#### 6. 강의 8 Function Task [p10]
 
 - ##### Example 8-7: Parity Calculation
 
+``` verilog
+//패리티 비트 계산
+module parity;
+    ...
+    reg [31:0] addr;
+    reg parity;
+    always @(addr)
+        begin 
+            parity = calc_parity(addr);
+            $display("Parity calculated = %b", calc_parity(addr) );
+        end
+    function calc_parity;
+        input [31:0] address;//input 매개변수
+        begin// begin으로 시작
+            calc_parity = ^address;
+        end
+    endfunction
+    ...
+endmodule 
+```
 
 
-#### 7. 강의 8-9 Automatic Function [p13]
 
-- ##### 과제 내용 숙지
+#### 7. 강의 8 Automatic Function [p13]
+
+- ##### Example 8-10: Recursive (Automatic) Functions
+
+``` verilog
+module top;
+    ...
+    function automatic integer factorial;//재귀 함수 선언 호출시 반환값이 자동으로 넘어감
+        input [31:0] oper;//input 매개변수
+        integer i; 
+        begin
+            if (oper >= 2) 
+                factorial = factorial(oper -1) * oper;// 재귀함수 호출
+            else
+                factorial = 1 ;
+        end
+    endfunction
+    integer result;
+    initial
+        begin
+            result = factorial(4);//Recursizr function 호출
+            $display("Factorial of 4 is %0d", result);
+        end
+    ...
+endmodule 
+```
 
 
 
-#### 8. 강의 8-9 assign구문 외우기 [p31 마지막줄]
+#### 8. 강의 8-9 assign구문 왜 있을까? [p23 밑에서 5번째줄]
 
 - ##### 왜 저 구문이 필요할까?
 
+``` verilog
+// UART_TxD
+//indicated the rising edge of bit clock 
+// 정기적으로 bclk_delayed주기로 bclk_rising 바꾸어줘 always문에 신호를 전송한다.
+// ~bclk_delayed: 비트 뒤집기
+assign	bclk_rising = bclk & (~bclk_delayed);
+```
 
 
-#### 9. 강의 8-9 assign구문 외우기 [p23 밑에서 5번째줄]
 
-- ##### 왜 저 구문이 필요할까?
-
-
-
-#### 10. 강의 8-9 UART Transmitter [p23,25]
+#### 9. 강의 8-9 UART Transmitter [p23,25]
 
 - ##### always구문 2개 숙지
 
+안해 시발
 
-
-#### 11. 강의 8-9 UART Receiver assign구문 외우기 [p?]
+#### 10. 강의 8-9 UART Receiver assign구문 외우기 [p31 마지막줄]
 
 - ##### 왜 저 구문이 필요할까?
 
+``` verilog
+// UART_RxD
+//indicated the rising edge of bit clock 
+// 정기적으로 BclkX8_Dlayed주기로 BclkX8_Rising 바꾸어줘 always문에 신호를 전송한다.
+// ~BclkX8_Dlayed: 비트 뒤집기
+assign BclkX8_Rising = BclkX8 & (~BclkX8_Dlayed);
+```
 
 
-#### 10. 강의 8-9 UART Receiver [p32,35]
+
+#### 11. 강의 8-9 UART Receiver [p32,35]
 
 - ##### always구문 2개 숙지
 
+안해 시발

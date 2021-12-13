@@ -203,3 +203,21 @@ Input : L3 | L2 | Na | Nb |  Data
 
 Output : Lb | L4 | Na | Nb |  Data
 
+
+
+#### P9-15. Figure 9.7 shows a system as either a host or a router. What would be the actual entity (host or router) of system A and B in each of the following cases:
+#### a. If the link is the first one in the path?
+
+link가 처음이라면 두 시스템 모두 host일수밖에 없다. 
+
+#### b. If the link is the middle one in the path?
+
+link가 시스템의 중간에 있다면 A,B는 router일수 밖에 없다
+
+#### c. If the link is the last one in the path?
+
+link가 시스템의 종단에 있다면 host일수도 router일수도있가.
+
+#### d. If there is only one link in the path (local communication)?
+
+host이어야만한다.
