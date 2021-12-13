@@ -31,4 +31,4 @@ Chap13 0 10 11 => 강의노트위주로
 강의 8-9 p23 밑에서 5번째줄 assign ~ 숙지 왜 저 구문이 필요할까?
 강의 8-9 p23,25 UART Transmitter => always구문 2개 숙지
 강의 8-9 p31 밑에서 마지막줄 assign ~ 숙지 왜 저 구문이 필요할까?
-강의 8-9 p32,35 UART Transmitter => always구문 2개 숙지
+강의 8-9 p32,35 UART Receiver=> always구문 2개 숙지

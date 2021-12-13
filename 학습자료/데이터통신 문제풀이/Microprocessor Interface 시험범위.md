@@ -139,20 +139,21 @@ endmodule
 module block_swap(x_out,y_out,clk,x,y);
   input clk,x,y;
   output x_out,y_out;
-  reg x_val,y_val;
+  reg x_val,y_val, temp;
   
   always @(posedge clk) begin
      x_val = x;
      y_val = y;
+       temp = x_val;
 	   x_val = y_val;
-	   y_val = x_val;
+	   y_val = temp;
   end
   
   assign x_out = x_val;
   assign y_out = y_val;
   
 endmodule;
-//Blocking떄는 순차적으로 바로 적용되어 교차가 이루어지지 않는다.
+//Blocking떄는 순차적으로 바로 적용되어 교차가 이루어지지 않는다. 그래ㅓ 임시변수를 만들어 swap해야한다.
 ```
 
 ``` verilog
@@ -312,7 +313,7 @@ module parity;
     function calc_parity;
         input [31:0] address;//input 매개변수
         begin// begin으로 시작
-            calc_parity = ^address;
+            calc_parity = ^address;//XOR계산
         end
     endfunction
     ...
@@ -386,6 +387,14 @@ assign BclkX8_Rising = BclkX8 & (~BclkX8_Dlayed);
 
 #### 11. 강의 8-9 UART Receiver [p32,35]
 
-- ##### always구문 2개 숙지
+- ##### always구문 2개 숙지 type구분
 
 안해 시발
+
+
+
+#### 12. 강의 10  Distribute Delay
+
+
+
+#### 13.강의 10  Lumped Delay
