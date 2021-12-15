@@ -2,7 +2,7 @@
 
 #### Example 5.1) An analog signal carries 4 bits per signal element. If 1000 signal elements are sent per second, find the bit rate.
 
-##### 4kbps
+4Kbps
 
 #### Example 5.2) An analog signal has a bit rate of 8000 bps and a baud rate of 1000 baud. A.How many data elements are carried by each signal element? B.How many signal elements do we need?
 
@@ -12,9 +12,9 @@
 
 #### Example 5.3) We have an available bandwidth of 100 kHz which spans from 200 to 300 kHz. What are the carrier frequency and the bit rate if we modulated our data by using ASK with d = 1?
 
-##### A) carrier frequency : 250KHz
+##### A) carrier frequency : 250Hz
 
-##### B) bit rate : B = (1+d)N * 1/r  => 100 = 2N => N = 50Kbps
+##### B) bit rate : 50Kbps
 
 > B = (1+d)N * 1/r
 >
@@ -28,9 +28,9 @@
 
 #### Example 5.5) We have an available bandwidth of 100 kHz which spans from 200 to 300 kHz. What should be the carrier frequency and the bit rate if we modulated our data by using FSK with d = 1?
 
-##### A) carrier frequency : 250KHz
+##### A) carrier frequency : 250Hz
 
-##### B) bit rate : B = (1+d)N * 2df  => 100 = 2N + 50 => 2N = 50Kbps => N = 25Kbps
+##### B) bit rate : 25Hz
 
 > FSK 형태
 >
@@ -53,7 +53,7 @@ C) 8가지의 신호를 표시해야하고 초당 1M baud 만큼 패킷을 보�
 
 #### Q5-2. Define carrier signal and explain its role in analog transmission.
 
-##### 정보전달을 위해 입력 신호를 변조한 전자기파
+##### 정보전달을 위해 입력 신호를 변조한 전자기파, 전파 전송을 위해 signal에 따라 물리적 특성이 변조된다.
 
 #### Q5-3. Define digital-to-analog conversion.
 
@@ -79,7 +79,7 @@ C) 8가지의 신호를 표시해야하고 초당 1M baud 만큼 패킷을 보�
 
 #### Q5-8. Define analog-to-analog conversion.
 
-##### 주어진 Bandwidth내에서 전송해야할 정보를 보낼수 있도록 변환하는 과정
+##### 아날로그 신호를 주어진 Bandwidth내에서 전송해야할 정보를 보낼수 있도록 변환하는 과정
 
 #### Q5-9. Which characteristics of an analog signal are changed to represent the lowpass analog signal in each of the following analog-to-analog conversions?
 
@@ -131,7 +131,8 @@ C) 8가지의 신호를 표시해야하고 초당 1M baud 만큼 패킷을 보�
 #### P5-5. Draw the constellation diagram for the following cases. Find the peak amplitude value for each case and define the type of modulation (ASK, FSK, PSK, or QAM).The numbers in parentheses define the values of I and Q respectively.
 
 ##### a. Two points at (2, 0) and (3, 0) : 3 / ASK
-b. Two points at (3, 0) and (−3, 0) : 3 / PSK
+
+##### b. Two points at (3, 0) and (−3, 0) : 3 / PSK
 c. Four points at (2, 2), (−2, 2), (−2, −2), and (2, −2) : 2 / QAM
 d. Two points at (0, 2) and (0, −2) : 2 / PSK
 

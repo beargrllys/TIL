@@ -318,6 +318,38 @@ If Random number is not 0, The transmission can be success in second transmissio
 
 
 
+#### P12-19. The random variable R (Figure 12.13) is designed to give stations different delays when a collision has occurred. To alleviate the collision, we expect tha different stations generate different values of R. To show the point, find the probability that the value of R is the same for two stations after
+
+![image-20211213222359974](image-20211213222359974.png)
+
+#### a. the first collision. 
+
+50%
+
+#### b. the second collision.
+
+12.5%
+
+
+
+#### P12-22. We have a pure ALOHA network with a data rate of 10 Mbps. What is the maximum number of 1000-bit frames that can be successfully sent by this network?
+
+10000baud => 1840 frames
+
+
+
+#### P12-23. Check to see if the following set of chips can belong to an orthogonal system.
+
+> [+1, +1] and [+1, −1]
+
+1. 2의 제곱수이므로 조건 1은 부합한다.
+
+2. 내적의 조합에서 0이므로 조건2도 부합한다.
+
+3. 자기자신과의 내적이 2,2이므로 N과 같아 조건3에 부합한다.
+
+   따라서 모든 조건에 부합하므로 CSMA에 사용하기에 적합한 코드이다.
+
 #### P12-24. Check to see if the following set of chips can belong to an orthogonal system.
 
 > [+1, +1, +1, +1] , [+1, −1, −1, +1] , [−1, +1, +1, −1] , [+1, −1, −1, +1]
@@ -348,7 +380,7 @@ If Random number is not 0, The transmission can be success in second transmissio
 
    =-4
 
-   3가지중 1개만 0이므로 조건에 만족하지 않는다.
+   서로 다른 코드가 내적이 모두 0이 아니므로 조건에 만족하지 않는다.
 
 3. A.A = [+1, +1, +1, +1].[+1, +1, +1, +1]
 

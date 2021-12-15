@@ -70,7 +70,7 @@
 
 ##### A)What is the total delay if 1000 bits of data are exchanged during the datatransfer phase?:
 
-##### 3.025 ms
+##### 104 ms
 
 ##### B)What is the total delay if 100,000 bits of data are exchanged during the data-transfer phase?
 

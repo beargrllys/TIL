@@ -97,28 +97,28 @@ always @ (state or N or D or Q) //무엇이 무엇이 들왔을까?
                 	end
                 else 
                     next = GOT_25c;
-                    RETURN_20c: 
-                        begin
-                        	DD = 1; 
-                            next = RETURN_10c;
-                        end
-                    RETURN_15c: 
-                        begin
-                            DD = 1; 
-                            next = RETURN_5c;
-                        end
-                    RETURN_10c: 
-                        begin
-                        	DD = 1; 
-                            next = IDLE;
-                        end
-                    RETURN_5c: 
-                        begin
-                        	DN = 1; 
-                            next = IDLE;
-                        end
-                    default: 
-                        next = IDLE;
+            RETURN_20c: 
+                begin
+                    DD = 1; 
+                    next = RETURN_10c;
+                end
+            RETURN_15c: 
+                begin
+                    DD = 1; 
+                    next = RETURN_5c;
+                end
+            RETURN_10c: 
+                begin
+                    DD = 1; 
+                    next = IDLE;
+                end
+            RETURN_5c: 
+                begin
+                    DN = 1; 
+                    next = IDLE;
+                end
+            default: 
+                next = IDLE;
             endcase
         end
 endmodule
@@ -239,6 +239,7 @@ initial
         temp_xz = x + z;
         #5    y = temp_xz;
     end 
+//intra delay가 변수로 이루어질경우 delay가 시작하고 나서의 변수값을 가져온다
 ```
 
 
@@ -359,6 +360,7 @@ endmodule
 // UART_TxD
 //indicated the rising edge of bit clock 
 // 정기적으로 bclk_delayed주기로 bclk_rising 바꾸어줘 always문에 신호를 전송한다.
+// bit 전송 속도를 synchronize해주기 위해 일정한 주기로 Bclk이 tick되도록한다.
 // ~bclk_delayed: 비트 뒤집기
 assign	bclk_rising = bclk & (~bclk_delayed);
 ```
@@ -369,7 +371,9 @@ assign	bclk_rising = bclk & (~bclk_delayed);
 
 - ##### always구문 2개 숙지
 
-안해 시발
+한개는 State를 업데이트하고 모니터링하기위해 존재하고
+
+한개는 
 
 #### 10. 강의 8-9 UART Receiver assign구문 외우기 [p31 마지막줄]
 
@@ -378,7 +382,7 @@ assign	bclk_rising = bclk & (~bclk_delayed);
 ``` verilog
 // UART_RxD
 //indicated the rising edge of bit clock 
-// 정기적으로 BclkX8_Dlayed주기로 BclkX8_Rising 바꾸어줘 always문에 신호를 전송한다.
+// bit 전송 속도를 synchronize해주기 위해 일정한 주기로 Bclk이 tick되도록한다.
 // ~BclkX8_Dlayed: 비트 뒤집기
 assign BclkX8_Rising = BclkX8 & (~BclkX8_Dlayed);
 ```
@@ -389,12 +393,60 @@ assign BclkX8_Rising = BclkX8 & (~BclkX8_Dlayed);
 
 - ##### always구문 2개 숙지 type구분
 
-안해 시발
+**always @ (state or RxD or RDRF or ct1 or ct2 or BclkX8_Rising)**
 
+은 bit의 수신상태에 따라 state를 바꿔주눈 역할을 한다.
 
+**always @ (posedge sysclk or negedge rst_b)**
+
+은 receive된 bit가 있는지 detect하고 수신한다.
 
 #### 12. 강의 10  Distribute Delay
+
+![image-20211213121834029](image-20211213121834029.png)
+
+``` verilog
+//Distribute Delay by gate module
+module M (out, a, b, c, d);
+    output out;
+    input a, b, c, d; 
+    wire e, f; 
+    
+    and #5 a1(e, a, b);
+    and #7 a2(f, c, d);
+    and #4 a3(out, e, f);
+endmodule 
+```
+
+``` verilog
+//Distribute Delay by data flow
+module M (out, a, b, c, d);
+    output out;
+    input a, b, c, d;
+    wire e, f;
+    
+    assign #5 e = a & b;
+    assign #7 f = c & d;
+    assign #4 out = e & f;
+endmodule 
+```
 
 
 
 #### 13.강의 10  Lumped Delay
+
+![image-20211213121819284](image-20211213121819284.png)
+
+``` verilog
+module M (out, a, b, c, d);
+	output out;
+	input a, b, c, d;
+	wire e, f;
+	
+	and a1(e, a, b);
+	and a2(f, c, d);
+	and #11 a3(out, e, f);
+	//delay only on the output gate 
+endmodule 
+```
+

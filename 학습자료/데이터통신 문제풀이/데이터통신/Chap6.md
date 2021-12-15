@@ -44,7 +44,7 @@
 
  #### P6-2. We need to transmit 100 digitized voice channels using a passband channel of 20 KHz. What should be the ratio of bits/Hz if we use no guard band?
 
-##### 5bit/Hz
+##### 각 목소리당 할당될수 있는 주파수는 200Hz이므로 각 음성데이터가 64Kbps를 가진다면 1번의 Hz당 320Hz씩 움직여야한다.
 
 #### P6-4. We need to use synchronous TDM and combine 20 digital sources, each of 100 Kbps. Each output slot carries 1 bit from each digital source, but one extra bit is added to each frame for synchronization. Answer the following questions:
 
@@ -64,7 +64,7 @@ e. What is the efficiency of the system (ratio of useful bits to the total bits)
 
 #### P6-6. We have 14 sources, each creating 500 8-bit characters per second. Since only some of these sources are active at any moment, we use statistical TDM to combine these sources using character interleaving. Each frame carries 6 slots at a time, but we need to add 4-bit addresses to each slot. Answer the following questions:
 
-##### a. What is the size of an output frame in bits? : 72bit
+##### a. What is the size of an output frame in bits? : 6*(8+4) = 72bit
 
 ##### b. What is the output frame rate? : 6slot => 6 inputline : 500 frames/s
 

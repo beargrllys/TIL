@@ -24,7 +24,7 @@
 >
 > N: bit rate
 >
-> r: Signal element
+> r: Signal 당 element 개수
 
 #### Example 5.5) We have an available bandwidth of 100 kHz which spans from 200 to 300 kHz. What should be the carrier frequency and the bit rate if we modulated our data by using FSK with d = 1?
 
