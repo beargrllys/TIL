@@ -9,3 +9,39 @@ X = 12
 12 38 20
 974859 284763 473853 
 */
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int initX, N;
+int A,B,C;
+
+vector <long long> ret_set;
+
+int main()
+{
+	cin >> initX >> N;
+	long long ret = 0;
+	for (int i = 0; i < N; i++)
+	{
+		cin >> A >> B >> C;
+		for(int X = initX - 3; X <= initX + 3; X++)
+		{
+			ret += A * pow(X,2);
+			ret += (B * X);
+			ret += C;
+
+			ret_set.push_back(ret % 999983);
+			ret = 0;
+		}
+
+		for(int j = 0; j < ret_set.size(); j++){
+			cout << ret_set[j] << " ";
+		}
+		cout << "\n";
+		ret_set.clear();
+	}
+
+}
