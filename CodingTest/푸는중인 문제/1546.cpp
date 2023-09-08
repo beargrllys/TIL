@@ -28,6 +28,5 @@ int main()
 		fl += (float) vec[i]/mx*100;
 
 	}
-	cout << mx << "\n";
 	cout << (float)fl/N;
 }
